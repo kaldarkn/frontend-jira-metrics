@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './app/components/Layout';
+import Home from './app/pages/Home';
+import NotFound from './app/pages/NotFound';
+import TaskTimeDiscrepanciesGroups from './app/pages/TaskTimeDiscrepanciesInGroups';
+import TaskTimeDiscrepanciesProjects from './app/pages/TaskTimeDiscrepanciesInProjects';
+import UserTaskTimeDiscrepancies from './app/pages/UserTaskTimeDiscrepancies';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout title="Jira Metrics" />}>
+        <Route index element={<Home />} />
+        <Route path="TaskTimeDiscrepanciesInGroups" element={<TaskTimeDiscrepanciesGroups />} />
+        <Route path="TaskTimeDiscrepanciesInProjects" element={<TaskTimeDiscrepanciesProjects />} />
+        <Route path="UserTaskTimeDiscrepancies" element={<UserTaskTimeDiscrepancies />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 
